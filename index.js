@@ -31,6 +31,76 @@
 let cards = []; // You will use this array in step 6
 
 // Continue the code here 👇🏻
+class Card {
+  // Green = 1;
+  // Blue = 2;
+  // Red = 3;
+  // Yellow = 4;
+  constructor(number, color) {
+    this.number = number;
+    this.color = color;
+    if (color === "Yellow") {
+      this.position = 0;
+    } else if (color === "Blue") {
+      this.position = 1;
+    } else if (color === "Red") {
+      this.position = 2;
+    } else if (color === "Green") {
+      this.position = 3;
+    }
+  }
+  image() {
+    return `./images/${this.color}_${this.number}.png`;
+  }
+}
+function shuffle() {
+  cards.sort(() => Math.random() - 0.5);
+}
+function unShuffle() {
+  cards.sort((a, b) => a.number - b.number);
+  cards.sort((a, b) => a.position - b.position);
+}
+const card = new Card(1, "yellow");
+console.log(card);
+const color = ["Yellow", "Blue", "Red", "Green"];
+for (let j = 0; j < 4; j++) {
+  // let color = "";
+  // if (i === 0) {
+  //   color = "Yellow";
+  // } else if (i === 1) {
+  //   color = "Blue";
+  // } else if (i === 2) {
+  //   color = "Red";
+  // } else {
+  //   color = "Green";
+  // }
+  for (let i = 0; i < 10; i++) {
+    cards.push(new Card(i, color[j]));
+    cards.push(new Card(i, color[j]));
+  }
+}
+
+//shuffle();
+for (let j = 0; j < 3; j++) {
+  for (let i = 1; i < 7; i++) {
+    setTimeout(function () {
+      if (i === 6) {
+        unShuffle();
+        render(cards);
+        console.log(cards);
+      } else {
+        shuffle();
+        render(cards);
+      }
+    }, 3000 * (6 * j + i));
+  }
+}
+//shuffle();
+//unShuffle();
+//console.log(cards[1]);
+//cards.push(new Card(1, "Blue"));
+//cards.push(new Card(1, "Yellow"));
+//cards.push(new Card(1, "Green"));
 
 /**
  *
